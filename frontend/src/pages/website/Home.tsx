@@ -1,3 +1,4 @@
+import PlanYourSafari from "../../components/home/PlanYourSafari";
 import Hero from "../../components/home/Hero";
 import WhyChooseUs from "../../components/home/WhyChooseUs";
 import FeaturedPackages from "../../components/home/FeaturedPackages";
