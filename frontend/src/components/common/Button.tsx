@@ -9,20 +9,22 @@ export default function Button({
   variant = "primary",
   onClick,
 }: ButtonProps) {
-  const baseStyle =
-    "px-6 py-3 rounded-lg font-semibold transition duration-300";
 
-  const variants = {
+  const base =
+    "px-8 py-4 rounded-full font-semibold duration-300 transition-all";
+
+  const styles = {
     primary:
-      "bg-green-700 text-white hover:bg-green-800",
+      "bg-green-700 text-white hover:bg-green-800 hover:scale-105 shadow-lg",
+
     secondary:
-      "border border-green-700 text-green-700 hover:bg-green-700 hover:text-white",
+      "bg-white border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-white hover:scale-105",
   };
 
   return (
     <button
       onClick={onClick}
-      className={`${baseStyle} ${variants[variant]}`}
+      className={`${base} ${styles[variant]}`}
     >
       {children}
     </button>
