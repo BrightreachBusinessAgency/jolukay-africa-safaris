@@ -1,11 +1,13 @@
 import Navbar from "./components/common/Navbar";
-import Home from "./pages/website/Home";
+import Footer from "./components/home/Footer";
+import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
     <>
       <Navbar />
-      <Home />
+      <AppRouter />
+      <Footer />
     </>
   );
 }
