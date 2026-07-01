@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Home from "../pages/website/Home";
 import About from "../pages/website/About";
@@ -11,26 +11,22 @@ import NotFound from "../pages/website/NotFound";
 
 export default function AppRouter() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <Routes>
+      <Route path="/" element={<Home />} />
 
-        <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
 
-        <Route path="/about" element={<About />} />
+      <Route path="/packages" element={<Packages />} />
 
-        <Route path="/packages" element={<Packages />} />
+      <Route path="/destinations" element={<Destinations />} />
 
-        <Route path="/destinations" element={<Destinations />} />
+      <Route path="/gallery" element={<Gallery />} />
 
-        <Route path="/gallery" element={<Gallery />} />
+      <Route path="/contact" element={<Contact />} />
 
-        <Route path="/contact" element={<Contact />} />
+      <Route path="/booking" element={<Booking />} />
 
-        <Route path="/booking" element={<Booking />} />
-
-        <Route path="*" element={<NotFound />} />
-
-      </Routes>
-    </BrowserRouter>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }

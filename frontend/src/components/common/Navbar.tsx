@@ -1,59 +1,71 @@
-import Button from "./Button";
+import { Link } from "react-router-dom";
+
+import Logo from "../common/Logo";
+import Button from "../common/Button";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b shadow-sm">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-5">
 
-        <div className="flex items-center justify-between h-20">
+        {/* Logo */}
+        <Link to="/">
+          <Logo />
+        </Link>
 
-          {/* Logo */}
-          <div>
-            <h1 className="text-2xl font-bold text-green-700">
-              JOLUKAY
-            </h1>
-            <p className="text-xs tracking-widest text-gray-500">
-              AFRICA SAFARIS
-            </p>
-          </div>
+        {/* Navigation */}
+        <nav className="hidden md:flex items-center gap-8 font-medium text-gray-700">
 
-          {/* Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <Link
+            to="/"
+            className="hover:text-green-700 transition-colors duration-300"
+          >
+            Home
+          </Link>
 
-            <a href="#" className="hover:text-green-700 font-medium">
-              Home
-            </a>
+          <Link
+            to="/about"
+            className="hover:text-green-700 transition-colors duration-300"
+          >
+            About
+          </Link>
 
-            <a href="#" className="hover:text-green-700 font-medium">
-              About
-            </a>
+          <Link
+            to="/packages"
+            className="hover:text-green-700 transition-colors duration-300"
+          >
+            Packages
+          </Link>
 
-            <a href="#" className="hover:text-green-700 font-medium">
-              Packages
-            </a>
+          <Link
+            to="/destinations"
+            className="hover:text-green-700 transition-colors duration-300"
+          >
+            Destinations
+          </Link>
 
-            <a href="#" className="hover:text-green-700 font-medium">
-              Destinations
-            </a>
+          <Link
+            to="/gallery"
+            className="hover:text-green-700 transition-colors duration-300"
+          >
+            Gallery
+          </Link>
 
-            <a href="#" className="hover:text-green-700 font-medium">
-              Gallery
-            </a>
+          <Link
+            to="/contact"
+            className="hover:text-green-700 transition-colors duration-300"
+          >
+            Contact
+          </Link>
 
-            <a href="#" className="hover:text-green-700 font-medium">
-              Contact
-            </a>
+        </nav>
 
-          </nav>
-
-          {/* CTA */}
-          <div className="hidden lg:block">
-            <Button>
-              Request Quote
-            </Button>
-          </div>
-
-        </div>
+        {/* CTA */}
+        <Link to="/booking">
+          <Button>
+            Request Quote
+          </Button>
+        </Link>
 
       </div>
     </header>

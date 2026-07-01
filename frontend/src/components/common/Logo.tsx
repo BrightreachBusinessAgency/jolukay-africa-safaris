@@ -1,15 +1,13 @@
-type LogoProps = {
-  dark?: boolean;
-};
-
-export default function Logo({ dark = false }: LogoProps) {
+export default function Logo() {
   return (
-    <h1
-      className={`text-3xl font-bold tracking-wide ${
-        dark ? "text-white" : "text-green-700"
-      }`}
-    >
-      JOLUKAY
-    </h1>
+    <div>
+      <h1 className="text-2xl font-bold text-green-700">
+        JOLUKAY
+      </h1>
+
+      <p className="text-xs tracking-widest text-gray-500">
+        AFRICA SAFARIS
+      </p>
+    </div>
   );
 }
