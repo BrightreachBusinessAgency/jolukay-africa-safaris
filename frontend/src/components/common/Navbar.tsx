@@ -1,73 +1,52 @@
 import { Link } from "react-router-dom";
-
 import Logo from "../common/Logo";
 import Button from "../common/Button";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b shadow-sm">
+    <header className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-md border-b border-white/10">
+
       <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-5">
 
         {/* Logo */}
-        <Link to="/">
-          <Logo />
-        </Link>
+        <Logo />
 
         {/* Navigation */}
-        <nav className="hidden md:flex items-center gap-8 font-medium text-gray-700">
+        <nav className="hidden lg:flex items-center gap-8 text-white font-medium">
 
-          <Link
-            to="/"
-            className="hover:text-green-700 transition-colors duration-300"
-          >
+          <Link to="/" className="hover:text-green-400 transition duration-300">
             Home
           </Link>
 
-          <Link
-            to="/about"
-            className="hover:text-green-700 transition-colors duration-300"
-          >
+          <Link to="/about" className="hover:text-green-400 transition duration-300">
             About
           </Link>
 
-          <Link
-            to="/packages"
-            className="hover:text-green-700 transition-colors duration-300"
-          >
-            Packages
-          </Link>
-
-          <Link
-            to="/destinations"
-            className="hover:text-green-700 transition-colors duration-300"
-          >
+          <Link to="/destinations" className="hover:text-green-400 transition duration-300">
             Destinations
           </Link>
 
-          <Link
-            to="/gallery"
-            className="hover:text-green-700 transition-colors duration-300"
-          >
+          <Link to="/packages" className="hover:text-green-400 transition duration-300">
+            Packages
+          </Link>
+
+          <Link to="/gallery" className="hover:text-green-400 transition duration-300">
             Gallery
           </Link>
 
-          <Link
-            to="/contact"
-            className="hover:text-green-700 transition-colors duration-300"
-          >
+          <Link to="/contact" className="hover:text-green-400 transition duration-300">
             Contact
           </Link>
 
         </nav>
 
         {/* CTA */}
-        <Link to="/booking">
-          <Button>
-            Request Quote
-          </Button>
-        </Link>
+        <Button>
+          Book Safari
+        </Button>
 
       </div>
+
     </header>
   );
 }

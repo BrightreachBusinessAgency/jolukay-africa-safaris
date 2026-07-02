@@ -6,6 +6,7 @@ import TopDestinations from "../../components/home/TopDestinations";
 import SafariFleet from "../../components/home/SafariFleet";
 import Testimonials from "../../components/home/Testimonials";
 import Gallery from "../../components/home/Gallery";
+import CallToAction from "../../components/home/CallToAction";
 
 export default function Home() {
   return (
@@ -25,6 +26,8 @@ export default function Home() {
       <Testimonials />
 
       <Gallery />
+
+      <CallToAction />
     </>
   );
 }
