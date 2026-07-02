@@ -11,12 +11,19 @@ export default function Home() {
   return (
     <>
       <Hero />
+
       <PlanYourSafari />
+
       <WhyChooseUs />
+
       <FeaturedPackages />
+
       <TopDestinations />
+
       <SafariFleet />
+
       <Testimonials />
+
       <Gallery />
     </>
   );
