@@ -1,16 +1,22 @@
 type ButtonProps = {
   children: React.ReactNode;
   variant?: "primary" | "secondary";
+  type?: "button" | "submit" | "reset";
   onClick?: () => void;
+  disabled?: boolean;
+  className?: string;
 };
 
 export default function Button({
   children,
   variant = "primary",
+  type = "button",
   onClick,
+  disabled = false,
+  className = "",
 }: ButtonProps) {
   const base =
-    "px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg";
+    "px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg inline-flex items-center justify-center";
 
   const styles = {
     primary:
@@ -22,8 +28,12 @@ export default function Button({
 
   return (
     <button
+      type={type}
       onClick={onClick}
-      className={`${base} ${styles[variant]}`}
+      disabled={disabled}
+      className={`${base} ${styles[variant]} ${
+        disabled ? "opacity-50 cursor-not-allowed" : ""
+      } ${className}`}
     >
       {children}
     </button>
