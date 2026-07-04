@@ -1,3 +1,7 @@
+import maasaiMara from "../assets/destinations/maasai-mara.jpg";
+import lakeNakuru from "../assets/destinations/lake-nakuru.jpg";
+import amboseli from "../assets/destinations/amboseli.jpg";
+
 export interface BlogPost {
   id: number;
   slug: string;
@@ -20,11 +24,11 @@ export const blogPosts: BlogPost[] = [
     author: "JOLUKAY Africa Safaris",
     date: "July 2026",
     readingTime: "5 min read",
-    image: "/images/blog/maasai-mara.jpg",
+    image: maasaiMara,
     excerpt:
       "Discover the best months to experience the Great Migration and incredible wildlife in Maasai Mara.",
     content:
-      "The Maasai Mara is one of Africa's most famous safari destinations. The best time to visit is between July and October when the Great Migration takes place..."
+      "The Maasai Mara National Reserve is one of Africa's most iconic safari destinations. Between July and October, millions of wildebeest and zebras cross from the Serengeti into Kenya, creating one of the greatest wildlife spectacles on earth. During this period visitors also enjoy excellent opportunities to see lions, cheetahs, elephants, leopards and many other species."
   },
 
   {
@@ -35,11 +39,11 @@ export const blogPosts: BlogPost[] = [
     author: "JOLUKAY Africa Safaris",
     date: "July 2026",
     readingTime: "6 min read",
-    image: "/images/blog/safari-cost.jpg",
+    image: lakeNakuru,
     excerpt:
-      "Understand what affects safari pricing and how to plan your dream trip within your budget.",
+      "Understand what affects safari pricing and how to plan your dream African adventure within your budget.",
     content:
-      "Safari prices depend on the season, accommodation, transportation and number of days..."
+      "Safari prices vary depending on travel season, accommodation level, transportation, park fees and the number of travel days. Choosing the right itinerary allows you to enjoy an unforgettable safari while staying within your preferred budget."
   },
 
   {
@@ -50,10 +54,10 @@ export const blogPosts: BlogPost[] = [
     author: "JOLUKAY Africa Safaris",
     date: "July 2026",
     readingTime: "4 min read",
-    image: "/images/blog/big-five.jpg",
+    image: amboseli,
     excerpt:
-      "Learn about Africa's legendary Big Five and where to see them during your safari.",
+      "Learn about Africa's legendary Big Five and where to find them during your East African safari.",
     content:
-      "The Big Five include the Lion, Leopard, Elephant, Buffalo and Rhinoceros..."
+      "The Big Five consist of the Lion, Leopard, Elephant, Buffalo and Rhinoceros. Kenya and Tanzania offer some of the best locations to encounter these magnificent animals in their natural habitats, accompanied by experienced professional safari guides."
   }
 ];

@@ -1,3 +1,5 @@
+import SEO from "../../components/common/SEO";
+
 import Hero from "../../components/home/Hero";
 import PlanYourSafari from "../../components/home/PlanYourSafari";
 import WhyChooseUs from "../../components/home/WhyChooseUs";
@@ -11,6 +13,12 @@ import CallToAction from "../../components/home/CallToAction";
 export default function Home() {
   return (
     <>
+      <SEO
+        title="JOLUKAY Africa Safaris | Luxury East African Safaris"
+        description="Experience unforgettable safaris across Kenya, Tanzania, Uganda and Rwanda. Discover wildlife, luxury safari packages, private tours, and tailor-made adventures with JOLUKAY Africa Safaris."
+        keywords="Kenya safari, Tanzania safari, Uganda safari, Rwanda safari, Maasai Mara, Serengeti, Amboseli, luxury safari, private safari, East Africa tours"
+      />
+
       <Hero />
 
       <PlanYourSafari />

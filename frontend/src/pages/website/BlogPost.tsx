@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import Button from "../../components/common/Button";
 import { blogPosts } from "../../data/blogData";
 
 export default function BlogPost() {
@@ -8,16 +9,23 @@ export default function BlogPost() {
 
   if (!post) {
     return (
-      <div className="max-w-7xl mx-auto py-24 px-8 text-center">
-        <h1 className="text-5xl font-bold">Article Not Found</h1>
+      <section className="min-h-screen flex items-center justify-center bg-stone-50">
+        <div className="text-center">
+          <h1 className="text-5xl font-bold mb-6">
+            Article Not Found
+          </h1>
 
-        <Link
-          to="/blog"
-          className="inline-block mt-8 bg-green-700 text-white px-6 py-3 rounded-lg"
-        >
-          Back to Blog
-        </Link>
-      </div>
+          <p className="text-gray-600 mb-8">
+            The article you are looking for doesn't exist.
+          </p>
+
+          <Link to="/blog">
+            <Button>
+              Back to Blog
+            </Button>
+          </Link>
+        </div>
+      </section>
     );
   }
 
@@ -25,60 +33,79 @@ export default function BlogPost() {
     <main className="bg-white">
 
       {/* Hero */}
-      <section className="bg-green-800 text-white py-20">
-        <div className="max-w-5xl mx-auto px-8">
 
-          <span className="bg-green-600 px-4 py-2 rounded-full">
-            {post.category}
-          </span>
-
-          <h1 className="text-5xl font-bold mt-6">
-            {post.title}
-          </h1>
-
-          <div className="flex gap-6 mt-6 text-green-200">
-            <span>{post.author}</span>
-            <span>{post.date}</span>
-            <span>{post.readingTime}</span>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Featured Image */}
-      <section className="max-w-5xl mx-auto px-8 py-12">
+      <section className="relative h-[500px]">
 
         <img
           src={post.image}
           alt={post.title}
-          className="w-full rounded-2xl shadow-lg"
+          className="absolute inset-0 w-full h-full object-cover"
         />
+
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        <div className="relative z-10 h-full flex items-center">
+
+          <div className="max-w-5xl mx-auto px-8 text-white">
+
+            <span className="bg-green-600 px-5 py-2 rounded-full">
+              {post.category}
+            </span>
+
+            <h1 className="text-5xl lg:text-6xl font-bold mt-8">
+              {post.title}
+            </h1>
+
+            <div className="flex flex-wrap gap-6 mt-8 text-green-200">
+
+              <span>{post.author}</span>
+
+              <span>{post.date}</span>
+
+              <span>{post.readingTime}</span>
+
+            </div>
+
+          </div>
+
+        </div>
 
       </section>
 
       {/* Article */}
-      <section className="max-w-4xl mx-auto px-8 pb-24">
+
+      <section className="max-w-4xl mx-auto py-24 px-8">
 
         <p className="text-lg leading-9 text-gray-700 whitespace-pre-line">
           {post.content}
         </p>
 
-        <div className="mt-16 border-t pt-10">
+        <div className="mt-16 border-t pt-12">
 
-          <h3 className="text-3xl font-bold">
-            Ready to Experience Africa?
-          </h3>
+          <h2 className="text-4xl font-bold">
+            Ready For Your Own African Safari?
+          </h2>
 
-          <p className="text-gray-600 mt-4">
-            Contact JOLUKAY Africa Safaris today and let us plan your dream safari.
+          <p className="text-gray-600 mt-6 leading-8">
+            Speak with our safari experts and let us design a personalized
+            itinerary for your unforgettable East African adventure.
           </p>
 
-          <Link
-            to="/booking"
-            className="inline-block mt-8 bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl transition"
-          >
-            Request Free Safari Quote
-          </Link>
+          <div className="flex flex-wrap gap-4 mt-10">
+
+            <Link to="/booking">
+              <Button>
+                Request Safari Quote
+              </Button>
+            </Link>
+
+            <Link to="/blog">
+              <Button variant="secondary">
+                Back to Blog
+              </Button>
+            </Link>
+
+          </div>
 
         </div>
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 
 import Logo from "./Logo";
 import Button from "./Button";
@@ -22,16 +22,20 @@ export default function Navbar() {
 
   return (
     <>
+      {/* ================= NAVBAR ================= */}
+
       <header className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-md border-b border-white/10">
 
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-8 py-5">
 
           {/* Logo */}
+
           <Link to="/">
             <Logo />
           </Link>
 
           {/* Desktop Navigation */}
+
           <nav className="hidden lg:flex items-center gap-8">
 
             {links.map((link) => (
@@ -39,7 +43,7 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={({ isActive }) =>
-                  `transition font-medium ${
+                  `transition duration-300 font-medium ${
                     isActive
                       ? "text-green-400"
                       : "text-white hover:text-green-400"
@@ -52,19 +56,29 @@ export default function Navbar() {
 
           </nav>
 
-          {/* Desktop Button */}
+          {/* Desktop CTA */}
+
           <div className="hidden lg:block">
+
             <Link to="/booking">
-              <Button>
+
+              <Button className="flex items-center gap-2">
+
                 Request Quote
+
+                <ChevronRight size={18} />
+
               </Button>
+
             </Link>
+
           </div>
 
           {/* Mobile Menu Button */}
+
           <button
-            onClick={() => setMobileMenu(true)}
             className="lg:hidden text-white"
+            onClick={() => setMobileMenu(true)}
           >
             <Menu size={30} />
           </button>
@@ -73,17 +87,28 @@ export default function Navbar() {
 
       </header>
 
-      {/* Mobile Drawer */}
+      {/* ================= MOBILE MENU ================= */}
+
       {mobileMenu && (
-        <div className="fixed inset-0 z-50 bg-black/80">
 
-          <div className="bg-white w-80 h-full p-8 shadow-xl">
+        <div
+          className="fixed inset-0 bg-black/70 z-50"
+          onClick={() => setMobileMenu(false)}
+        >
 
-            <div className="flex justify-between items-center mb-10">
+          <div
+            className="bg-white w-80 max-w-full h-full p-8 shadow-2xl animate-[slideIn_.3s_ease]"
+            onClick={(e) => e.stopPropagation()}
+          >
+
+            <div className="flex items-center justify-between mb-10">
 
               <Logo />
 
-              <button onClick={() => setMobileMenu(false)}>
+              <button
+                onClick={() => setMobileMenu(false)}
+                className="text-gray-700 hover:text-red-500 transition"
+              >
                 <X size={30} />
               </button>
 
@@ -92,12 +117,13 @@ export default function Navbar() {
             <nav className="flex flex-col gap-6">
 
               {links.map((link) => (
+
                 <NavLink
                   key={link.path}
                   to={link.path}
                   onClick={() => setMobileMenu(false)}
                   className={({ isActive }) =>
-                    `text-lg font-medium ${
+                    `text-lg font-medium transition ${
                       isActive
                         ? "text-green-700"
                         : "text-gray-700 hover:text-green-700"
@@ -106,23 +132,34 @@ export default function Navbar() {
                 >
                   {link.name}
                 </NavLink>
+
               ))}
+
+            </nav>
+
+            <div className="mt-10">
 
               <Link
                 to="/booking"
                 onClick={() => setMobileMenu(false)}
-                className="mt-8"
               >
-                <Button className="w-full">
+
+                <Button className="w-full flex items-center justify-center gap-2">
+
                   Request Quote
+
+                  <ChevronRight size={18} />
+
                 </Button>
+
               </Link>
 
-            </nav>
+            </div>
 
           </div>
 
         </div>
+
       )}
     </>
   );

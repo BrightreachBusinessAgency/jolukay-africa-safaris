@@ -1,10 +1,17 @@
+import { Link } from "react-router-dom";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+  FaLinkedinIn,
+} from "react-icons/fa";
+
 export default function Footer() {
   return (
     <footer className="bg-slate-900 text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-8">
-
         <div className="grid md:grid-cols-4 gap-10">
-
+          {/* Company */}
           <div>
             <h2 className="text-3xl font-bold">
               JOLUKAY AFRICA SAFARIS
@@ -15,75 +22,90 @@ export default function Footer() {
             </p>
           </div>
 
+          {/* Quick Links */}
           <div>
             <h3 className="text-xl font-semibold mb-5">
               Quick Links
             </h3>
 
-            <ul className="space-y-2 text-gray-400">
-              <li><a href="/">Home</a></li>
-              <li><a href="/about">About</a></li>
-              <li><a href="/packages">Packages</a></li>
-              <li><a href="/destinations">Destinations</a></li>
-              <li><a href="/gallery">Gallery</a></li>
-              <li><a href="/contact">Contact</a></li>
+            <ul className="space-y-3 text-gray-400">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/destinations">Destinations</Link></li>
+              <li><Link to="/packages">Packages</Link></li>
+              <li><Link to="/gallery">Gallery</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
 
+          {/* Contact */}
           <div>
             <h3 className="text-xl font-semibold mb-5">
               Contact
             </h3>
 
-            <p className="text-gray-400">📞 +254 111 954 622</p>
-            <p className="text-gray-400 mt-2">✉ info@jolukayafricasafaris.com</p>
-            <p className="text-gray-400 mt-2">📍 Nakuru, Kenya</p>
+            <p className="text-gray-400">
+              📞 +254 111 954 622
+            </p>
+
+            <p className="text-gray-400 mt-2">
+              ✉ info@jolukayafricasafaris.com
+            </p>
+
+            <p className="text-gray-400 mt-2">
+              📍 Nakuru, Kenya
+            </p>
           </div>
 
+          {/* Social */}
           <div>
             <h3 className="text-xl font-semibold mb-5">
               Follow Us
             </h3>
 
-            <div className="flex gap-3">
-
+            <div className="flex gap-4">
               <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-green-700 flex items-center justify-center hover:bg-green-600"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 rounded-full bg-green-700 hover:bg-green-600 flex items-center justify-center transition"
               >
-                FB
+                <FaFacebookF />
               </a>
 
               <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-green-700 flex items-center justify-center hover:bg-green-600"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 rounded-full bg-green-700 hover:bg-green-600 flex items-center justify-center transition"
               >
-                IG
+                <FaInstagram />
               </a>
 
               <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-green-700 flex items-center justify-center hover:bg-green-600"
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 rounded-full bg-green-700 hover:bg-green-600 flex items-center justify-center transition"
               >
-                YT
+                <FaYoutube />
               </a>
 
               <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-green-700 flex items-center justify-center hover:bg-green-600"
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 rounded-full bg-green-700 hover:bg-green-600 flex items-center justify-center transition"
               >
-                IN
+                <FaLinkedinIn />
               </a>
-
             </div>
           </div>
-
         </div>
 
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-500">
           © 2026 JOLUKAY Africa Safaris. All Rights Reserved.
         </div>
-
       </div>
     </footer>
   );
