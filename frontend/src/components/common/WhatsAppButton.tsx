@@ -11,7 +11,7 @@ export default function WhatsAppButton() {
     >
       <div className="flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white px-5 py-3 rounded-full shadow-xl transition-all duration-300 hover:scale-105">
 
-        <FaWhatsapp className="text-2xl" />
+        <span className="text-2xl text-white"><FaWhatsapp size={24} /></span>
 
         <span className="font-semibold hidden md:inline">
           WhatsApp

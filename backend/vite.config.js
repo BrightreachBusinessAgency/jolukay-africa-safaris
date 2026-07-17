@@ -17,8 +17,10 @@ export default defineConfig({
         tailwindcss(),
     ],
     server: {
+    allowedHosts: ['.ngrok-free.dev'],
         watch: {
             ignored: ['**/storage/framework/views/**'],
         },
     },
 });
+

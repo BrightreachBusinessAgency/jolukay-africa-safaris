@@ -1,45 +1,130 @@
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
+const navItem =
+  "block rounded-2xl px-4 py-3 transition hover:bg-blue-800";
+
 export default function AdminLayout({ children }: Props) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("adminToken");
+    navigate("/admin/login");
+  };
+
   return (
-    <div className="min-h-screen bg-slate-100 flex">
+    <div className="min-h-screen flex bg-slate-100">
+
       {/* Sidebar */}
-      <aside className="w-64 bg-blue-900 text-white p-6">
-        <h2 className="text-2xl font-bold">JOLUKAY</h2>
 
-        <p className="text-sm text-blue-200 mt-1">
-          Africa Safaris
-        </p>
+      <aside className="w-72 bg-blue-900 text-white flex flex-col">
 
-        <nav className="mt-10 space-y-4">
-          <a href="#" className="block hover:text-yellow-300">
+        <div className="p-6 border-b border-blue-800">
+
+          <h2 className="text-2xl font-bold tracking-wide">
+            JOLUKAY
+          </h2>
+
+          <p className="text-blue-200 text-sm">
+            Africa Safaris
+          </p>
+
+        </div>
+
+        <nav className="flex-1 px-4 py-6 space-y-2">
+
+          <NavLink
+            to="/admin/dashboard"
+            className={({ isActive }) =>
+              `${navItem} ${isActive ? "bg-blue-800 text-yellow-300" : ""}`
+            }
+          >
             Dashboard
-          </a>
+          </NavLink>
 
-          <a href="#" className="block hover:text-yellow-300">
+          <NavLink
+            to="/admin/packages"
+            className={({ isActive }) =>
+              `${navItem} ${isActive ? "bg-blue-800 text-yellow-300" : ""}`
+            }
+          >
+            Packages
+          </NavLink>
+
+          <NavLink
+            to="/admin/gallery"
+            className={({ isActive }) =>
+              `${navItem} ${isActive ? "bg-blue-800 text-yellow-300" : ""}`
+            }
+          >
+            Gallery
+          </NavLink>
+
+          <NavLink
+            to="/admin/bookings"
+            className={({ isActive }) =>
+              `${navItem} ${isActive ? "bg-blue-800 text-yellow-300" : ""}`
+            }
+          >
             Bookings
-          </a>
+          </NavLink>
 
-          <a href="#" className="block hover:text-yellow-300">
-            Customers
-          </a>
+          <NavLink
+            to="/admin/customer-inquiries"
+            className={({ isActive }) =>
+              `${navItem} ${isActive ? "bg-blue-800 text-yellow-300" : ""}`
+            }
+          >
+            Customer Inquiries
+          </NavLink>
 
-          <a href="#" className="block hover:text-yellow-300">
-            Vehicles
-          </a>
+          <NavLink
+            to="/admin/users"
+            className={({ isActive }) =>
+              `${navItem} ${isActive ? "bg-blue-800 text-yellow-300" : ""}`
+            }
+          >
+            Users
+          </NavLink>
 
-          <a href="#" className="block hover:text-yellow-300">
-            Reports
-          </a>
+          <NavLink
+            to="/admin/social-settings"
+            className={({ isActive }) =>
+              `${navItem} ${isActive ? "bg-blue-800 text-yellow-300" : ""}`
+            }
+          >
+            Social Settings
+          </NavLink>
+
         </nav>
+
+        <div className="p-4 border-t border-blue-800 space-y-3">
+
+          <Link
+            to="/"
+            className="block rounded-2xl px-4 py-3 hover:bg-blue-800 transition"
+          >
+            Return to Website
+          </Link>
+
+          <button
+            onClick={handleLogout}
+            className="w-full rounded-2xl bg-red-600 py-3 hover:bg-red-500 transition"
+          >
+            Logout
+          </button>
+
+        </div>
+
       </aside>
 
-      {/* Main Content */}
-      <main className="flex-1 p-8">
-        {children}
+      <main className="flex-1 p-8 overflow-auto">
+        {children ?? <Outlet />}
       </main>
+
     </div>
   );
 }

@@ -1,27 +1,35 @@
-import gallery1 from "../../assets/gallery/gallery-1.jpg";
-import gallery2 from "../../assets/gallery/gallery-2.jpg";
-import gallery3 from "../../assets/gallery/gallery-3.jpg";
-import gallery4 from "../../assets/gallery/gallery-4.jpg";
-import gallery5 from "../../assets/gallery/gallery-5.jpg";
-import gallery6 from "../../assets/gallery/gallery-6.jpg";
-import gallery7 from "../../assets/gallery/gallery-7.jpg";
-import gallery8 from "../../assets/gallery/gallery-8.jpg";
+import { useEffect, useState } from "react";
+import API_URL from "../../services/api";
 
-const images = [
-  gallery1,
-  gallery2,
-  gallery3,
-  gallery4,
-  gallery5,
-  gallery6,
-  gallery7,
-  gallery8,
-];
+interface GalleryImage {
+  id: number;
+  title: string | null;
+  image_url: string;
+}
 
 export default function Gallery() {
+  const [images, setImages] = useState<GalleryImage[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`${API_URL}/gallery`)
+      .then(async (res) => {
+        if (!res.ok) {
+          throw new Error("Failed to load gallery");
+        }
+
+        const data = await res.json();
+        setImages(Array.isArray(data) ? data : []);
+      })
+      .catch((err) => {
+        console.error(err);
+        setImages([]);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <>
-      {/* Hero */}
       <section className="bg-green-700 text-white py-24">
         <div className="max-w-7xl mx-auto px-8 text-center">
           <h1 className="text-5xl font-bold">
@@ -34,26 +42,34 @@ export default function Gallery() {
         </div>
       </section>
 
-      {/* Gallery Grid */}
       <section className="py-24 bg-stone-50">
         <div className="max-w-7xl mx-auto px-8">
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition duration-300"
-              >
-                <img
-                  src={image}
-                  alt={`Gallery ${index + 1}`}
-                  className="w-full h-72 object-cover hover:scale-110 transition duration-500"
-                />
-              </div>
-            ))}
-
-          </div>
+          {loading ? (
+            <div className="text-center text-lg">
+              Loading gallery...
+            </div>
+          ) : images.length === 0 ? (
+            <div className="text-center text-lg">
+              No gallery images available.
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {images.map((image) => (
+                <div
+                  key={image.id}
+                  className="overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition"
+                >
+                  <img
+                    src={`${API_URL.replace('/api', '')}${image.image_url}`}
+                    alt={image.title ?? "Gallery Image"}
+                    className="w-full h-72 object-cover hover:scale-110 transition duration-500"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
 
         </div>
       </section>

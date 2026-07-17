@@ -1,103 +1,109 @@
-import SEO from "../../components/common/SEO";
-import Button from "../../components/common/Button";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../../components/common/SEO";
+import PackageCard from "../../components/cards/PackageCard";
+import API_URL from "../../services/api";
+import { useToast } from "../../components/common/ToastContext";
+import type { Package } from "../../types/packages";
 
-const packages = [
-  {
-    title: "2 Days Lake Nakuru Safari",
-    duration: "2 Days / 1 Night",
-    description:
-      "Discover rhinos, flamingos, lions and breathtaking scenery in Lake Nakuru National Park.",
-  },
-  {
-    title: "3 Days Maasai Mara Safari",
-    duration: "3 Days / 2 Nights",
-    description:
-      "Experience Africa's most famous wildlife reserve and the Big Five with expert safari guides.",
-  },
-  {
-    title: "5 Days Amboseli & Tsavo",
-    duration: "5 Days / 4 Nights",
-    description:
-      "Enjoy spectacular elephant herds, Mount Kilimanjaro views and diverse wildlife.",
-  },
-  {
-    title: "7 Days Kenya Explorer",
-    duration: "7 Days / 6 Nights",
-    description:
-      "Visit Maasai Mara, Lake Nakuru and Amboseli on one unforgettable safari adventure.",
-  },
-  {
-    title: "10 Days Kenya & Tanzania",
-    duration: "10 Days / 9 Nights",
-    description:
-      "Cross borders and explore Maasai Mara, Serengeti and Ngorongoro Crater.",
-  },
-  {
-    title: "Custom Safari",
-    duration: "Flexible",
-    description:
-      "Build your own safari itinerary based on your budget, interests and travel dates.",
-  },
-];
+function formatUSD(value: number | string) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(Number(value));
+}
 
 export default function Packages() {
+  const [packages, setPackages] = useState<Package[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const { showToast } = useToast();
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(`${API_URL}/packages`);
+        if (!response.ok) {
+          throw new Error("Failed to load packages.");
+        }
+
+        const data = await response.json();
+        setPackages(data);
+      } catch (err) {
+        setError("Unable to load packages.");
+        showToast("error", "Packages could not be loaded.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPackages();
+  }, [showToast]);
+
   return (
     <>
       <SEO
         title="Safari Packages | JOLUKAY Africa Safaris"
-        description="Explore our carefully designed safari packages across Kenya, Tanzania, Uganda and Rwanda."
+        description="Explore our carefully designed safari packages across Kenya and East Africa."
       />
 
-      {/* Hero */}
       <section className="bg-green-700 text-white py-24">
         <div className="max-w-6xl mx-auto px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold">
-            Safari Packages
-          </h1>
-
+          <h1 className="text-5xl md:text-6xl font-bold">Safari Packages</h1>
           <p className="mt-6 text-xl text-green-100 max-w-3xl mx-auto">
-            Choose from our carefully designed safari experiences or let us
-            create a tailor-made itinerary just for you.
+            Choose from our carefully designed safari experiences or request a tailored quote for a custom itinerary.
           </p>
         </div>
       </section>
 
-      {/* Packages */}
       <section className="py-24 bg-stone-50">
-        <div className="max-w-7xl mx-auto px-8 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-          {packages.map((pkg) => (
-            <div
-              key={pkg.title}
-              className="bg-white rounded-3xl shadow-lg overflow-hidden hover:-translate-y-2 transition duration-300"
-            >
-              <div className="bg-green-700 text-white p-6">
-                <h2 className="text-2xl font-bold">
-                  {pkg.title}
-                </h2>
-
-                <p className="mt-2 text-green-100">
-                  {pkg.duration}
-                </p>
-              </div>
-
-              <div className="p-6">
-                <p className="text-gray-600 leading-7">
-                  {pkg.description}
-                </p>
-
-                <div className="mt-8">
-                  <Link to="/booking">
-                    <Button className="w-full">
-                      Request Quote
-                    </Button>
-                  </Link>
-                </div>
-              </div>
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-10">
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-green-700 font-semibold">
+                Live safari packages
+              </p>
+              <h2 className="text-4xl font-bold text-slate-900 mt-3">Discover your next safari adventure</h2>
             </div>
-          ))}
+            <Link to="/booking">
+              <button className="inline-flex items-center justify-center rounded-full bg-green-700 px-8 py-3 text-white font-semibold transition hover:bg-green-800">
+                Request Quote
+              </button>
+            </Link>
+          </div>
 
+          {loading ? (
+            <div className="rounded-3xl bg-white border border-slate-200 p-12 text-center shadow-sm">
+              <p className="text-xl text-slate-600">Loading safari packages...</p>
+            </div>
+          ) : error ? (
+            <div className="rounded-3xl bg-white border border-rose-200 p-12 text-center shadow-sm">
+              <p className="text-xl text-rose-600">{error}</p>
+            </div>
+          ) : packages.length === 0 ? (
+            <div className="rounded-3xl bg-white border border-slate-200 p-12 text-center shadow-sm">
+              <p className="text-xl text-slate-600">No safari packages are available at the moment.</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {packages.map((item) => (
+                <PackageCard
+                  key={item.id}
+                  image={item.featured_image_url}
+                  title={item.title}
+                  location={item.location}
+                  duration={item.duration}
+                  price={formatUSD(item.price)}
+                  safariType={item.safari_type}
+                  link={`/packages/${item.id}`}
+                  ctaLabel="View Package"
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>

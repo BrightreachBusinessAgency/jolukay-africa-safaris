@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/website/Home";
 import About from "../pages/website/About";
 import Packages from "../pages/website/Packages";
+import PackageDetail from "../pages/website/PackageDetail";
 import Destinations from "../pages/website/Destinations";
 import Experiences from "../pages/website/Experiences";
 import Gallery from "../pages/website/Gallery";
@@ -22,6 +23,7 @@ export default function AppRouter() {
       {/* Main Pages */}
       <Route path="/about" element={<About />} />
       <Route path="/packages" element={<Packages />} />
+      <Route path="/packages/:id" element={<PackageDetail />} />
       <Route path="/destinations" element={<Destinations />} />
       <Route path="/experiences" element={<Experiences />} />
       <Route path="/gallery" element={<Gallery />} />
