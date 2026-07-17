@@ -78,7 +78,7 @@ export default function PackageDetail() {
       <section className="relative overflow-hidden">
         <div className="h-[420px] bg-slate-900">
           <img
-            src={item.featured_image_url}
+            src={item.featured_image_url ?? undefined}
             alt={item.title}
             className="w-full h-full object-cover opacity-90"
           />

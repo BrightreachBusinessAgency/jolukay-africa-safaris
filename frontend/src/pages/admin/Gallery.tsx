@@ -15,7 +15,6 @@ interface GalleryImage {
 // Use 'images[]' if the backend reads $request->file('images') as an array
 // (PHP requires the [] suffix to collect multiple files under one field name).
 // Use 'images' only if the backend explicitly expects a single non-array field.
-const UPLOAD_FIELD_NAME = 'images[]';
 
 const Gallery = () => {
   const [images, setImages] = useState<GalleryImage[]>([]);
@@ -30,7 +29,7 @@ const Gallery = () => {
   // Central place to redirect on 401 so every request handles auth expiry the same way.
   const handleUnauthorized = useCallback(() => {
     localStorage.removeItem('adminToken');
-    showToast('Your session has expired. Please log in again.', 'error');
+    showToast('error', 'Your session has expired. Please log in again.');
     window.location.href = '/admin/login';
   }, [showToast]);
 
@@ -71,9 +70,9 @@ const Gallery = () => {
     } catch (err) {
       if (err instanceof Error && err.message === 'Unauthorized') return;
       showToast(
-        err instanceof Error ? err.message : 'Failed to load gallery images',
-        'error'
-      );
+  'error',
+  err instanceof Error ? err.message : 'Failed to load gallery images'
+);
     } finally {
       setIsLoading(false);
     }
@@ -93,11 +92,11 @@ const Gallery = () => {
 
     setIsUploading(true);
 
-    const formData = new FormData();
-   Array.from(files).forEach((file) => {
+const formData = new FormData();
+
+Array.from(files).forEach((file) => {
   formData.append("images[]", file);
 });
-
     try {
       const res = await authFetch(`${API_URL}/admin/gallery`, {
         method: 'POST',
@@ -110,7 +109,9 @@ const Gallery = () => {
           const errJson = await res.json();
           message =
             errJson?.message ||
-            (errJson?.errors && Object.values(errJson.errors)[0]?.[0]) ||
+            (Array.isArray(Object.values(errJson?.errors ?? {})[0])
+  ? (Object.values(errJson.errors)[0] as string[])[0]
+  : undefined) ||
             message;
         } catch {
           // response wasn't JSON — keep default message
@@ -118,14 +119,14 @@ const Gallery = () => {
         throw new Error(message);
       }
 
-      showToast('Image(s) uploaded successfully', 'success');
+      showToast('success', 'Image(s) uploaded successfully');
       await fetchImages();
     } catch (err) {
       if (err instanceof Error && err.message === 'Unauthorized') return;
-      showToast(
-        err instanceof Error ? err.message : 'Failed to upload images',
-        'error'
-      );
+     showToast(
+  'error',
+  err instanceof Error ? err.message : 'Failed to upload images'
+);
     } finally {
       setIsUploading(false);
       if (fileInputRef.current) {
@@ -152,14 +153,14 @@ const Gallery = () => {
         throw new Error(message);
       }
 
-      showToast('Image deleted successfully', 'success');
+      showToast('success', 'Image deleted successfully');
       setImages((prev) => prev.filter((img) => img.id !== id));
     } catch (err) {
       if (err instanceof Error && err.message === 'Unauthorized') return;
       showToast(
-        err instanceof Error ? err.message : 'Failed to delete image',
-        'error'
-      );
+  'error',
+  err instanceof Error ? err.message : 'Failed to delete image'
+);
     } finally {
       setDeletingId(null);
     }

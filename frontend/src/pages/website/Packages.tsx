@@ -92,7 +92,7 @@ export default function Packages() {
               {packages.map((item) => (
                 <PackageCard
                   key={item.id}
-                  image={item.featured_image_url}
+                  image={item.featured_image_url ?? ""}
                   title={item.title}
                   location={item.location}
                   duration={item.duration}
