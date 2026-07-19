@@ -17,7 +17,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden pt-24">
       <div className="relative h-screen">
 
         {/* Background Video */}
@@ -37,7 +37,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/50"></div>
 
         {/* Hero Content */}
-        <div className="relative z-10 h-full max-w-7xl mx-auto px-8 flex items-center">
+        <div className="relative z-10 h-full max-w-7xl mx-auto px-8 pt-24 md:pt-28 flex items-center">
 
           <div className="max-w-3xl text-white">
 

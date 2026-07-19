@@ -23,7 +23,7 @@ export default function AppRouter() {
       {/* Main Pages */}
       <Route path="/about" element={<About />} />
       <Route path="/packages" element={<Packages />} />
-      <Route path="/packages/:id" element={<PackageDetail />} />
+      <Route path="/packages/:slug" element={<PackageDetail />} />
       <Route path="/destinations" element={<Destinations />} />
       <Route path="/experiences" element={<Experiences />} />
       <Route path="/gallery" element={<Gallery />} />

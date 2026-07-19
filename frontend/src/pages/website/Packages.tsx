@@ -98,7 +98,7 @@ export default function Packages() {
                   duration={item.duration}
                   price={formatUSD(item.price)}
                   safariType={item.safari_type}
-                  link={`/packages/${item.id}`}
+                  link={`/packages/${item.slug}`}
                   ctaLabel="View Package"
                 />
               ))}

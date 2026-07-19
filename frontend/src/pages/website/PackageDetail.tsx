@@ -14,7 +14,7 @@ function formatUSD(value: number | string) {
 }
 
 export default function PackageDetail() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [item, setItem] = useState<Package | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -22,12 +22,12 @@ export default function PackageDetail() {
 
   useEffect(() => {
     const fetchPackage = async () => {
-      if (!id) return;
+      if (!slug) return;
       setLoading(true);
       setError(null);
 
       try {
-        const response = await fetch(`${API_URL}/packages/${id}`);
+        const response = await fetch(`${API_URL}/packages/${slug}`);
         if (!response.ok) {
           throw new Error("Package not found.");
         }
@@ -43,7 +43,7 @@ export default function PackageDetail() {
     };
 
     fetchPackage();
-  }, [id, showToast]);
+  }, [slug, showToast]);
 
   if (loading) {
     return (
