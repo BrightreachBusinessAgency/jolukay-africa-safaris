@@ -57,7 +57,6 @@ export default function TopDestinations() {
       <div className="max-w-7xl mx-auto px-8">
 
         {/* Heading */}
-
         <div className="text-center mb-16">
 
           <span className="uppercase tracking-widest text-green-700 font-semibold">
@@ -77,7 +76,6 @@ export default function TopDestinations() {
         </div>
 
         {/* Cards */}
-
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
 
           {destinations.map((place) => (
@@ -101,7 +99,7 @@ export default function TopDestinations() {
 
               </div>
 
-              <div className="p-8">
+              <div className="p-8 pb-10">
 
                 <h3 className="text-3xl font-bold">
                   {place.name}
@@ -111,25 +109,11 @@ export default function TopDestinations() {
                   {place.description}
                 </p>
 
-                <button className="mt-8 bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-xl font-semibold transition">
-                  Explore Destination
-                </button>
-
               </div>
 
             </div>
 
           ))}
-
-        </div>
-
-        {/* CTA */}
-
-        <div className="text-center mt-20">
-
-          <button className="bg-green-700 hover:bg-green-800 text-white px-10 py-4 rounded-full text-lg font-semibold transition">
-            View All Destinations
-          </button>
 
         </div>
 

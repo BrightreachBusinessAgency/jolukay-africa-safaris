@@ -1,51 +1,73 @@
-import heroImage from "../../assets/hero/hero-1.jpg";
+import heroVideo from "../../assets/hero/hero-safari.mp4";
 import Button from "../common/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
-  return (
-    <section className="relative">
+  const navigate = useNavigate();
 
-      {/* Background Image */}
+  const scrollToSafariPlanner = () => {
+    const section = document.getElementById("plan-your-safari");
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  return (
+    <section className="relative overflow-hidden">
       <div className="relative h-screen">
 
-        <img
-          src={heroImage}
-          alt="JOLUKAY Africa Safaris"
+        {/* Background Video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
-        />
+        >
+          <source src={heroVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/55"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
 
         {/* Hero Content */}
         <div className="relative z-10 h-full max-w-7xl mx-auto px-8 flex items-center">
 
           <div className="max-w-3xl text-white">
 
-            <span className="inline-block bg-green-600 px-5 py-2 rounded-full font-semibold mb-8">
+            <span className="inline-block bg-green-600 px-5 py-2 rounded-full font-semibold mb-8 shadow-lg">
               🌍 Kenya • Tanzania • Uganda • Rwanda
             </span>
 
-            <h1 className="text-6xl lg:text-7xl font-extrabold leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
               Discover
-              <span className="block text-green-400">
-                Africa's Wild Beauty
+              <span className="block text-green-400 mt-2">
+                East Africa Like Never Before
               </span>
             </h1>
 
-            <p className="mt-8 text-xl text-gray-200 leading-9">
-              Experience unforgettable wildlife safaris, luxury lodges,
-              breathtaking landscapes and tailor-made adventures across
-              East Africa.
+            <p className="mt-8 text-lg md:text-xl text-gray-200 leading-8">
+              Experience unforgettable wildlife safaris,
+              luxury lodges, breathtaking landscapes,
+              and tailor-made adventures across East Africa.
             </p>
 
             <div className="flex flex-wrap gap-5 mt-10">
 
-              <Button>
+              <Button onClick={scrollToSafariPlanner}>
                 Book Your Safari
               </Button>
 
-              <Button variant="secondary">
+              <Button
+                variant="secondary"
+                onClick={() => navigate("/packages")}
+              >
                 Explore Packages
               </Button>
 
@@ -55,7 +77,7 @@ export default function Hero() {
             <div className="grid grid-cols-3 gap-8 mt-16">
 
               <div>
-                <h2 className="text-5xl font-bold text-green-400">
+                <h2 className="text-4xl lg:text-5xl font-bold text-green-400">
                   500+
                 </h2>
 
@@ -65,7 +87,7 @@ export default function Hero() {
               </div>
 
               <div>
-                <h2 className="text-5xl font-bold text-green-400">
+                <h2 className="text-4xl lg:text-5xl font-bold text-green-400">
                   25+
                 </h2>
 
@@ -75,7 +97,7 @@ export default function Hero() {
               </div>
 
               <div>
-                <h2 className="text-5xl font-bold text-green-400">
+                <h2 className="text-4xl lg:text-5xl font-bold text-green-400">
                   10+
                 </h2>
 
@@ -102,7 +124,6 @@ export default function Hero() {
         </div>
 
       </div>
-
     </section>
   );
 }

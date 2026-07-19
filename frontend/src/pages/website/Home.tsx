@@ -2,12 +2,12 @@ import SEO from "../../components/common/SEO";
 
 import Hero from "../../components/home/Hero";
 import PlanYourSafari from "../../components/home/PlanYourSafari";
-import WhyChooseUs from "../../components/home/WhyChooseUs";
 import FeaturedPackages from "../../components/home/FeaturedPackages";
 import TopDestinations from "../../components/home/TopDestinations";
+import WhyChooseUs from "../../components/home/WhyChooseUs";
 import SafariFleet from "../../components/home/SafariFleet";
-import Testimonials from "../../components/home/Testimonials";
 import Gallery from "../../components/home/Gallery";
+import Testimonials from "../../components/home/Testimonials";
 import CallToAction from "../../components/home/CallToAction";
 
 export default function Home() {
@@ -19,22 +19,31 @@ export default function Home() {
         keywords="Kenya safari, Tanzania safari, Uganda safari, Rwanda safari, Maasai Mara, Serengeti, Amboseli, luxury safari, private safari, East Africa tours"
       />
 
+      {/* Hero */}
       <Hero />
 
+      {/* Quick Quote */}
       <PlanYourSafari />
 
-      <WhyChooseUs />
-
+      {/* Featured Packages */}
       <FeaturedPackages />
 
+      {/* Destinations */}
       <TopDestinations />
 
+      {/* Why Choose Us */}
+      <WhyChooseUs />
+
+      {/* Safari Fleet */}
       <SafariFleet />
 
-      <Testimonials />
-
+      {/* Gallery */}
       <Gallery />
 
+      {/* Testimonials */}
+      <Testimonials />
+
+      {/* Final CTA */}
       <CallToAction />
     </>
   );

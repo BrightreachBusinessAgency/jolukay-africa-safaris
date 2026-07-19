@@ -36,6 +36,7 @@ export default function FeaturedPackages() {
             location="Kenya"
             duration="3 Days / 2 Nights"
             price="From $650"
+            ctaLabel={null}
           />
 
           <PackageCard
@@ -44,6 +45,7 @@ export default function FeaturedPackages() {
             location="Kenya"
             duration="2 Days / 1 Night"
             price="From $520"
+            ctaLabel={null}
           />
 
           <PackageCard
@@ -52,6 +54,7 @@ export default function FeaturedPackages() {
             location="Kenya"
             duration="4 Days / 3 Nights"
             price="From $950"
+            ctaLabel={null}
           />
 
         </div>
