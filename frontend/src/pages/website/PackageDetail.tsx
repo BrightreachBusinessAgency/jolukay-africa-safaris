@@ -76,7 +76,7 @@ export default function PackageDetail() {
       />
 
       <section className="relative overflow-hidden">
-        <div className="h-[420px] bg-slate-900">
+        <div className="h-[280px] md:h-[320px] lg:h-[360px] bg-slate-900">
           <img
             src={item.featured_image_url ?? undefined}
             alt={item.title}
@@ -84,37 +84,44 @@ export default function PackageDetail() {
           />
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 px-8 pb-8">
-          <div className="max-w-6xl mx-auto rounded-3xl bg-white/95 p-8 shadow-2xl backdrop-blur-sm border border-white/80">
-            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-              <div>
-                <span className="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold">
-                  {item.safari_type ?? "Safari"}
-                </span>
+        <div className="max-w-6xl mx-auto px-8 -mt-8 relative z-10">
+          <div className="max-w-6xl mx-auto rounded-3xl bg-white p-6 md:p-8 shadow-xl border border-slate-200">
+           <div className="space-y-4">
 
-                <h1 className="mt-4 text-4xl font-bold text-slate-900">
-                  {item.title}
-                </h1>
+  <span className="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold">
+    {item.safari_type ?? "Safari"}
+  </span>
 
-                <p className="mt-3 text-slate-600 max-w-2xl">
-                  {item.location}
-                </p>
-              </div>
+  <h1 className="text-3xl md:text-4xl font-bold text-slate-900">
+    {item.title}
+  </h1>
 
-              <div className="text-right">
-                <p className="text-sm uppercase tracking-[0.3em] text-slate-500">
-                  Starting from
-                </p>
-                <p className="mt-2 text-4xl font-bold text-emerald-700">
-                  {formatUSD(item.price)}
-                </p>
-              </div>
-            </div>
+  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-t pt-4">
+
+    <p className="text-slate-600 text-lg">
+      📍 {item.location}
+    </p>
+
+    <div className="text-left md:text-right">
+
+      <p className="text-xs uppercase tracking-widest text-slate-500">
+        Starting From
+      </p>
+
+      <p className="text-3xl font-bold text-emerald-700">
+        {formatUSD(item.price)}
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
           </div>
         </div>
       </section>
 
-      <main className="max-w-6xl mx-auto px-8 py-20 space-y-16">
+      <main className="max-w-6xl mx-auto px-8 pt-6 pb-16 space-y-12">
         <section className="grid lg:grid-cols-[2fr_1fr] gap-10">
           <div className="space-y-8">
             <div>

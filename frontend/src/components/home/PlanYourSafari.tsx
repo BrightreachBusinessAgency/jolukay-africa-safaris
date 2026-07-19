@@ -32,7 +32,7 @@ export default function PlanYourSafari() {
   };
 
   return (
-    <section className="bg-white py-20">
+    <section id="plan-your-safari" className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-8">
 
         <div className="bg-green-700 rounded-3xl p-12 shadow-2xl">

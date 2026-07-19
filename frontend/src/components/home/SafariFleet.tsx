@@ -6,7 +6,7 @@ const fleet = [
   {
     image: landCruiser,
     name: "Toyota Land Cruiser",
-    capacity: "6 Passengers",
+    capacity: "8 Passengers",
     features: "4x4 • Pop-up Roof • AC • Charging Ports",
   },
   {
@@ -18,7 +18,7 @@ const fleet = [
   {
     image: jeep,
     name: "Luxury Safari Jeep",
-    capacity: "5 Passengers",
+    capacity: "3 Passengers",
     features: "Private Safari • 4x4 • Professional Guide",
   },
 ];
@@ -61,7 +61,7 @@ export default function SafariFleet() {
                 className="w-full h-72 object-cover"
               />
 
-              <div className="p-8">
+              <div className="p-8 pb-10">
 
                 <h3 className="text-3xl font-bold">
                   {vehicle.name}
@@ -74,10 +74,6 @@ export default function SafariFleet() {
                 <p className="mt-4 text-gray-600 leading-7">
                   {vehicle.features}
                 </p>
-
-                <button className="mt-8 bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-xl font-semibold transition">
-                  View Vehicle
-                </button>
 
               </div>
 
