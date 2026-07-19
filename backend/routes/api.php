@@ -31,7 +31,7 @@ Route::get('/test', function () {
 
 // Website Packages
 Route::get('/packages', [WebsitePackageController::class, 'index']);
-Route::get('/packages/{package}', [WebsitePackageController::class, 'show']);
+Route::get('/packages/{slug}', [WebsitePackageController::class, 'show']);
 
 // Website Gallery
 Route::get('/gallery', [WebsiteGalleryController::class, 'index']);

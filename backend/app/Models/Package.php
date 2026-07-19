@@ -34,6 +34,14 @@ class Package extends Model
         'featured_image_url',
     ];
 
+    /**
+     * Use slug instead of id for route model binding.
+     */
+  
+
+    /**
+     * Full URL for the featured image.
+     */
     public function getFeaturedImageUrlAttribute(): ?string
     {
         if (!$this->featured_image) {

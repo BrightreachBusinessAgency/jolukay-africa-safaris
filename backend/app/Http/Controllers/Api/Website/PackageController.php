@@ -16,10 +16,12 @@ class PackageController extends Controller
         return response()->json($packages);
     }
 
-    public function show(Package $package)
-    {
-        abort_unless($package->published, 404);
+   public function show(string $slug)
+{
+    $package = Package::where('slug', $slug)
+        ->where('published', true)
+        ->firstOrFail();
 
-        return response()->json($package);
-    }
+    return response()->json($package);
+}
 }
