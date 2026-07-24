@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { useEffect } from "react";
+import ReactGA from "react-ga4";
 
 // Layouts
 import AdminLayout from "./layouts/AdminLayout";
@@ -17,17 +19,12 @@ import RequireAdmin from "./components/admin/RequireAdmin";
 // Website Router
 import AppRouter from "./router/AppRouter";
 
-// ============================
 // Admin Pages
-// ============================
-
 import Login from "./pages/admin/Login";
 import Dashboard from "./pages/admin/Dashboard";
-
 import PackagesAdmin from "./pages/admin/Packages";
 import CreatePackage from "./pages/admin/CreatePackage";
 import EditPackage from "./pages/admin/EditPackage";
-
 import Gallery from "./pages/admin/Gallery";
 import Bookings from "./pages/admin/Bookings";
 import CustomerInquiries from "./pages/admin/CustomerInquiries";
@@ -38,24 +35,24 @@ function AppRoutes() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith("/admin");
 
+  // Track every page change
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: location.pathname + location.search,
+    });
+  }, [location]);
+
   return (
     <>
       {!isAdmin && <Navbar />}
 
       <Routes>
-
-        {/* ============================
-            ADMIN LOGIN
-        ============================ */}
-
+        {/* ADMIN LOGIN */}
         <Route path="/admin/login" element={<Login />} />
 
-        {/* ============================
-            ADMIN PANEL
-        ============================ */}
-
+        {/* ADMIN PANEL */}
         <Route path="/admin" element={<AdminLayout />}>
-
           <Route
             index
             element={
@@ -145,15 +142,10 @@ function AppRoutes() {
               </RequireAdmin>
             }
           />
-
         </Route>
 
-        {/* ============================
-            WEBSITE
-        ============================ */}
-
+        {/* WEBSITE */}
         <Route path="/*" element={<AppRouter />} />
-
       </Routes>
 
       {!isAdmin && <Footer />}
