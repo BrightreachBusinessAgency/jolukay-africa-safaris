@@ -4,7 +4,10 @@ import API_URL from "../../services/api";
 interface GalleryImage {
   id: number;
   title: string | null;
+  image: string;
   image_url: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export default function Gallery() {
@@ -44,7 +47,6 @@ export default function Gallery() {
 
       <section className="py-24 bg-stone-50">
         <div className="max-w-7xl mx-auto px-8">
-
           {loading ? (
             <div className="text-center text-lg">
               Loading gallery...
@@ -61,16 +63,19 @@ export default function Gallery() {
                   className="overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition"
                 >
                   <img
-                    src={`${API_URL.replace('/api', '')}${image.image_url}`}
+                    src={image.image_url}
                     alt={image.title ?? "Gallery Image"}
                     className="w-full h-72 object-cover hover:scale-110 transition duration-500"
                     loading="lazy"
+                    onError={(e) => {
+                      console.error("Failed to load:", image.image_url);
+                      e.currentTarget.src = "/placeholder.jpg";
+                    }}
                   />
                 </div>
               ))}
             </div>
           )}
-
         </div>
       </section>
     </>
