@@ -58,51 +58,66 @@ export default function Users() {
   }, []);
 
   const handleSave = async (form: any) => {
-    setSaving(true);
+  setSaving(true);
 
-    try {
-      const token = localStorage.getItem("adminToken");
-      const response = await fetch(
-        editingUser
-          ? `${API_URL}/admin/users/${editingUser.id}`
-          : `${API_URL}/admin/users`,
-        {
-          method: editingUser ? "PUT" : "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(form),
-        }
-      );
+  try {
+    const token = localStorage.getItem("adminToken");
 
-      const json = await response.json();
+    const response = await fetch(
+      editingUser
+        ? `${API_URL}/admin/users/${editingUser.id}`
+        : `${API_URL}/admin/users`,
+      {
+        method: editingUser ? "PUT" : "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(form),
+      }
+    );
 
-      if (!response.ok) {
-        throw new Error(json.message || "Unable to save user.");
+    const json = await response.json();
+
+    if (!response.ok) {
+      let message = "Unable to save user.";
+
+      if (json.errors) {
+        message = Object.values(json.errors)
+          .flat()
+          .join("\n");
+      } else if (json.message) {
+        message = json.message;
       }
 
-      showToast(
-        "success",
-        editingUser
-          ? "User updated successfully."
-          : "User created successfully."
-      );
-
-      setModalOpen(false);
-      setEditingUser(null);
-      fetchUsers();
-    } catch (error) {
-      showToast(
-        "error",
-        error instanceof Error ? error.message : "Something went wrong."
-      );
-    } finally {
-      setSaving(false);
+      throw new Error(message);
     }
-  };
 
+    showToast(
+      "success",
+      editingUser
+        ? "User updated successfully."
+        : "User created successfully."
+    );
+
+    setModalOpen(false);
+    setEditingUser(null);
+
+    await fetchUsers();
+  } catch (error) {
+    console.error(error);
+
+    showToast(
+      "error",
+      error instanceof Error
+        ? error.message
+        : "Something went wrong."
+    );
+  } finally {
+    setSaving(false);
+  }
+};
   const handleEdit = (user: User) => {
     setEditingUser(user);
     setModalOpen(true);
@@ -133,9 +148,17 @@ export default function Users() {
 
       const json = await response.json();
 
-      if (!response.ok) {
-        throw new Error(json.message || "Unable to delete user.");
-      }
+     if (!response.ok) {
+  let message = json.message || "Unable to delete user.";
+
+  if (json.errors) {
+    message = Object.values(json.errors)
+      .flat()
+      .join("\n");
+  }
+
+  throw new Error(message);
+}
 
       showToast("success", "User deleted successfully.");
       setDeleteOpen(false);

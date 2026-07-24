@@ -6,6 +6,7 @@ use App\Models\Package;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,15 +17,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::firstOrCreate(
-            ['email' => 'admin@jolukayafricasafaris.com'],
+        /*
+        |--------------------------------------------------------------------------
+        | Default Administrator
+        |--------------------------------------------------------------------------
+        | Creates the administrator if it doesn't exist or updates it if it does.
+        | Credentials are read from the .env file.
+        |--------------------------------------------------------------------------
+        */
+        User::updateOrCreate(
             [
-                'name' => 'Admin User',
-                'password' => 'Admin@12345',
+                'email' => env('ADMIN_EMAIL', 'admin@jolukayafricasafaris.com'),
+            ],
+            [
+                'name' => env('ADMIN_NAME', 'Administrator'),
+                'password' => Hash::make(
+                    env('ADMIN_PASSWORD', 'Admin@123')
+                ),
+                'role' => 'admin',
+                'status' => 'active',
             ]
         );
 
+        /*
+        |--------------------------------------------------------------------------
+        | Default Safari Packages
+        |--------------------------------------------------------------------------
+        */
         if (Package::count() === 0) {
+
             Package::create([
                 'title' => '5 Days Maasai Mara Safari',
                 'slug' => '5-days-maasai-mara-safari',
