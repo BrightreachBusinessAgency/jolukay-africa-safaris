@@ -1,0 +1,5 @@
+User-agent: *
+
+Allow: /
+
+Sitemap: https://endearing-communication-production-2424.up.railway.app/sitemap.xml
