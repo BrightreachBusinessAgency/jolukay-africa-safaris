@@ -9,8 +9,7 @@ type SEOProps = {
 };
 
 const SITE_NAME = "JOLUKAY Africa Safaris";
-const SITE_URL =
-  "https://endearing-communication-production-2424.up.railway.app";
+const SITE_URL = "https://www.jolukayafricasafaris.com";
 
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
