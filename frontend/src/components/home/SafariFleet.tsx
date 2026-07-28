@@ -1,5 +1,5 @@
 import landCruiser from "../../assets/fleet/land-cruiser.jpg";
-import safariVan from "../../assets/fleet/safari-van.jpg";
+import safariVan from "../../assets/fleet/safari-van.png";
 import jeep from "../../assets/fleet/jeep.jpg";
 
 const fleet = [
@@ -26,11 +26,8 @@ const fleet = [
 export default function SafariFleet() {
   return (
     <section className="py-24 bg-stone-50">
-
       <div className="max-w-7xl mx-auto px-8">
-
         <div className="text-center mb-16">
-
           <span className="uppercase tracking-widest text-green-700 font-semibold">
             Travel in Comfort
           </span>
@@ -43,18 +40,14 @@ export default function SafariFleet() {
             Experience Africa in comfort with our professionally maintained
             safari vehicles designed for unforgettable adventures.
           </p>
-
         </div>
 
         <div className="grid lg:grid-cols-3 gap-10">
-
           {fleet.map((vehicle) => (
-
             <div
               key={vehicle.name}
               className="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition"
             >
-
               <img
                 src={vehicle.image}
                 alt={vehicle.name}
@@ -62,7 +55,6 @@ export default function SafariFleet() {
               />
 
               <div className="p-8 pb-10">
-
                 <h3 className="text-3xl font-bold">
                   {vehicle.name}
                 </h3>
@@ -74,17 +66,11 @@ export default function SafariFleet() {
                 <p className="mt-4 text-gray-600 leading-7">
                   {vehicle.features}
                 </p>
-
               </div>
-
             </div>
-
           ))}
-
         </div>
-
       </div>
-
     </section>
   );
 }
