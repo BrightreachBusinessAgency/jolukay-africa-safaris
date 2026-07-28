@@ -6,6 +6,15 @@ import ReactGA from "react-ga4";
 import "./index.css";
 import App from "./App";
 
+// Redirect Railway domain to the custom domain
+const hostname = window.location.hostname;
+
+if (hostname.endsWith(".up.railway.app")) {
+  window.location.replace(
+    `https://www.jolukayafricasafaris.com${window.location.pathname}${window.location.search}${window.location.hash}`
+  );
+}
+
 // Initialize Google Analytics
 ReactGA.initialize("G-P9E5ZTLHQN");
 
