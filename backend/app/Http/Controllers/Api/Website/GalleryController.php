@@ -10,8 +10,15 @@ class GalleryController extends Controller
 {
     public function index(): JsonResponse
     {
-        return response()->json(
-            GalleryImage::latest()->get()
-        );
+        $gallery = GalleryImage::latest()->get()->map(function ($image) {
+
+            if ($image->image && !str_starts_with($image->image, 'http')) {
+                $image->image = asset('storage/gallery/' . basename($image->image));
+            }
+
+            return $image;
+        });
+
+        return response()->json($gallery);
     }
 }

@@ -10,18 +10,30 @@ class PackageController extends Controller
     public function index()
     {
         $packages = Package::where('published', true)
-            ->orderByDesc('created_at')
-            ->get();
+            ->latest()
+            ->get()
+            ->map(function ($package) {
+
+                if ($package->featured_image && !str_starts_with($package->featured_image, 'http')) {
+                    $package->featured_image = asset('storage/packages/' . basename($package->featured_image));
+                }
+
+                return $package;
+            });
 
         return response()->json($packages);
     }
 
-   public function show(string $slug)
-{
-    $package = Package::where('slug', $slug)
-        ->where('published', true)
-        ->firstOrFail();
+    public function show(string $slug)
+    {
+        $package = Package::where('slug', $slug)
+            ->where('published', true)
+            ->firstOrFail();
 
-    return response()->json($package);
-}
+        if ($package->featured_image && !str_starts_with($package->featured_image, 'http')) {
+            $package->featured_image = asset('storage/packages/' . basename($package->featured_image));
+        }
+
+        return response()->json($package);
+    }
 }
