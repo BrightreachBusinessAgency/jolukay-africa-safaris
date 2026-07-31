@@ -17,8 +17,8 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden pt-24">
-      <div className="relative h-screen">
+    <section className="relative overflow-hidden pt-20">
+      <div className="relative min-h-[85vh]">
 
         {/* Background Video */}
         <video
@@ -33,32 +33,30 @@ export default function Hero() {
           Your browser does not support the video tag.
         </video>
 
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/50"></div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/35"></div>
 
         {/* Hero Content */}
-        <div className="relative z-10 h-full max-w-7xl mx-auto px-8 pt-24 md:pt-28 flex items-center">
+        <div className="relative z-10 h-full max-w-7xl mx-auto px-8 pt-12 md:pt-16 flex items-center">
 
           <div className="max-w-3xl text-white">
 
-            <span className="inline-block bg-green-600 px-5 py-2 rounded-full font-semibold mb-8 shadow-lg">
-              🌍 Kenya • Tanzania • Uganda • Rwanda
+            <span className="inline-flex items-center bg-green-600/90 backdrop-blur-sm px-6 py-3 rounded-full font-semibold shadow-xl mb-6">
+              📍 Kenya • Tanzania • Uganda • Rwanda
             </span>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
-              Discover
+              Luxury Safaris
               <span className="block text-green-400 mt-2">
-                East Africa Like Never Before
+                Across East Africa
               </span>
             </h1>
 
-            <p className="mt-8 text-lg md:text-xl text-gray-200 leading-8">
-              Experience unforgettable wildlife safaris,
-              luxury lodges, breathtaking landscapes,
-              and tailor-made adventures across East Africa.
+            <p className="mt-8 max-w-2xl text-lg md:text-xl text-gray-100 leading-8">
+              Discover Kenya, Tanzania, Uganda and Rwanda through expertly guided wildlife safaris, breathtaking landscapes, luxury lodges and tailor-made adventures designed around your travel dreams.
             </p>
 
-            <div className="flex flex-wrap gap-5 mt-10">
+            <div className="flex flex-wrap gap-5 mt-8">
 
               <Button onClick={scrollToSafariPlanner}>
                 Book Your Safari
@@ -74,35 +72,35 @@ export default function Hero() {
             </div>
 
             {/* Statistics */}
-            <div className="grid grid-cols-3 gap-8 mt-16">
+            <div className="grid grid-cols-3 gap-8 mt-12">
 
               <div>
-                <h2 className="text-4xl lg:text-5xl font-bold text-green-400">
+                <h2 className="text-5xl lg:text-6xl font-bold text-green-400">
                   500+
                 </h2>
 
                 <p className="mt-2 text-gray-200">
-                  Happy Travellers
+                  Happy Guests
                 </p>
               </div>
 
               <div>
-                <h2 className="text-4xl lg:text-5xl font-bold text-green-400">
+                <h2 className="text-5xl lg:text-6xl font-bold text-green-400">
                   25+
                 </h2>
 
                 <p className="mt-2 text-gray-200">
-                  Destinations
+                  Safari Destinations
                 </p>
               </div>
 
               <div>
-                <h2 className="text-4xl lg:text-5xl font-bold text-green-400">
+                <h2 className="text-5xl lg:text-6xl font-bold text-green-400">
                   10+
                 </h2>
 
                 <p className="mt-2 text-gray-200">
-                  Years Experience
+                  Years of Excellence
                 </p>
               </div>
 
@@ -113,7 +111,7 @@ export default function Hero() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce">
 
           <div className="w-8 h-14 border-2 border-white rounded-full flex justify-center">
 
