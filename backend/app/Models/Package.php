@@ -42,12 +42,17 @@ class Package extends Model
     /**
      * Full URL for the featured image.
      */
-    public function getFeaturedImageUrlAttribute(): ?string
-    {
-        if (!$this->featured_image) {
-            return null;
-        }
-
-        return Storage::disk('public')->url($this->featured_image);
+ public function getFeaturedImageUrlAttribute(): ?string
+{
+    if (!$this->featured_image) {
+        return null;
     }
+
+    // If already a complete URL, return it unchanged.
+    if (str_starts_with($this->featured_image, 'http')) {
+        return $this->featured_image;
+    }
+
+    return asset('storage/' . ltrim($this->featured_image, '/'));
+}
 }
