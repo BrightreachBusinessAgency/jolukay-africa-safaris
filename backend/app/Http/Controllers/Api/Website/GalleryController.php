@@ -8,17 +8,9 @@ use Illuminate\Http\JsonResponse;
 
 class GalleryController extends Controller
 {
-    public function index(): JsonResponse
-    {
-        $gallery = GalleryImage::latest()->get()->map(function ($image) {
-
-            if ($image->image && !str_starts_with($image->image, 'http')) {
-                $image->image = asset('storage/gallery/' . basename($image->image));
-            }
-
-            return $image;
-        });
-
-        return response()->json($gallery);
-    }
+   public function index(): JsonResponse
+{
+    return response()->json([
+        'status' => 'NEW CODE IS RUNNING'
+    ]);
 }
