@@ -17,12 +17,16 @@ class GalleryImage extends Model
         'image_url',
     ];
 
-    public function getImageUrlAttribute(): string
+    public function getImageUrlAttribute(): ?string
     {
         if (!$this->image) {
-            return '';
+            return null;
         }
 
-        return url('/api/images/' . dirname($this->image) . '/' . basename($this->image));
+        if (str_starts_with($this->image, 'http')) {
+            return $this->image;
+        }
+
+        return asset('storage/' . ltrim($this->image, '/'));
     }
 }
