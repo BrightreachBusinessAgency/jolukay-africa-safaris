@@ -8,9 +8,10 @@ use Illuminate\Http\JsonResponse;
 
 class GalleryController extends Controller
 {
-  public function index(): JsonResponse
-{
-    return response()->json(
-        GalleryImage::latest()->get()
-    );
+    public function index(): JsonResponse
+    {
+        return response()->json(
+            GalleryImage::latest()->get()
+        );
+    }
 }
