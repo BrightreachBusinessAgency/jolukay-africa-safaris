@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Admin\DashboardController;
+
+use App\Http\Controllers\Api\ImageController;
+
 use App\Http\Controllers\Api\Admin\AuthController;
+use App\Http\Controllers\Api\Admin\DashboardController;
 use App\Http\Controllers\Api\Admin\GalleryController;
 use App\Http\Controllers\Api\Admin\PackageController as AdminPackageController;
 use App\Http\Controllers\Api\Admin\BookingController as AdminBookingController;
@@ -36,6 +39,9 @@ Route::get('/packages/{slug}', [WebsitePackageController::class, 'show']);
 // Website Gallery
 Route::get('/gallery', [WebsiteGalleryController::class, 'index']);
 
+// Image Route
+Route::get('/images/{folder}/{filename}', [ImageController::class, 'show']);
+
 // Website Contact
 Route::post('/contact', [CustomerController::class, 'store']);
 
@@ -60,7 +66,9 @@ Route::post('/admin/login', [AuthController::class, 'login']);
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-Route::get('/admin/dashboard', [DashboardController::class, 'index']);
+
+    Route::get('/admin/dashboard', [DashboardController::class, 'index']);
+
     /*
     |--------------------------------------------------------------------------
     | Authentication
@@ -130,5 +138,4 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
     Route::get('/admin/social-settings', [AdminSocialSettingController::class, 'index']);
     Route::put('/admin/social-settings', [AdminSocialSettingController::class, 'update']);
-
 });

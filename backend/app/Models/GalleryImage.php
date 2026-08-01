@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class GalleryImage extends Model
 {
@@ -24,6 +23,6 @@ class GalleryImage extends Model
             return '';
         }
 
-        return Storage::url($this->image);
+        return url('/api/images/' . dirname($this->image) . '/' . basename($this->image));
     }
 }
